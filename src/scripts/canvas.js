@@ -148,11 +148,12 @@ function animate(circlesArr, c) {
     circlesArr.forEach(circle => {
         console.log(c)
         c.beginPath();
-        c.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
+        c.arc(200, 200, 50, 0, Math.PI * 2, false);
         console.log(circle.x)
         c.stroke();
 
         circle.move()
+        circle.adjustor(window.width, window.height)
         circle.x
         
     })
