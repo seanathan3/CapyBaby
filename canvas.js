@@ -1,14 +1,32 @@
 class Circle {
-    constructor(x, y, radius) {
+    constructor(x, y, radius, dx, dy) {
         this.x = x
         this.y = y
         this.radius = radius
+        this.dx = dx
+        this.dy = dy
     }
 
     draw(c) {
         c.beginPath()
-        c.arc(x, y, radius, 0, 2 * Math.PI, false)
+        c.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false)
         c.stroke()
+    }
+
+    adjustor(XMax, YMax) {
+        if (this.x + this.radius > XMax || this.x - this.radius < 0) {
+            this.dx = -this.dx
+        }
+
+        if (this.y + this.radius > YMax || this.y - this.radius < 0) {
+            this.dy = -this.dy
+        }
+        
+    }
+
+    move() {
+        this.x += this.dx;
+        this.y += this.dy;
     }
 }
 
@@ -79,19 +97,6 @@ for (let i = 0; i < 20; i++) {
     x += 200
 }
 
-
-let radius = 50;
-
-x = (Math.random() * canvas.width);
-while (x + radius > canvas.width || x - radius < 0) {
-    x = (Math.random() * canvas.width);
-}
-
-y = (Math.random() * canvas.height);
-while (y + radius > canvas.height || y - radius < 0) {
-    y = (Math.random() * canvas.height);
-}
-
 let speed = 15;
 let dx = Math.random() * (speed * 2) - 15;
 
@@ -102,50 +107,58 @@ let dy = Math.sqrt((speed ** 2) - (dx ** 2)) * yDir;
 
 // animating 1 circle
 
-myCircle = new Circle(x, y, radius)
+// myCircle = new Circle(x, y, radius)
 
-function animate() {
-    requestAnimationFrame(animate);
-    c.clearRect(0, 0, canvas.width, canvas.height)
+function createRandomCircles(num) {
+    let output = []
+    for (let i = 0; i < num; i++) {
 
-    //setting values for x, dx, y, dy & radius
-    let radius = 20;
+        let radius = 50;
 
-    x = (Math.random() * canvas.width);
-    while (x + radius > canvas.width || x - radius < 0) {
         x = (Math.random() * canvas.width);
-    }
+        while (x + radius > canvas.width || x - radius < 0) {
+            x = (Math.random() * canvas.width);
+        }
 
-    y = (Math.random() * canvas.height);
-    while (y + radius > canvas.height || y - radius < 0) {
         y = (Math.random() * canvas.height);
+        while (y + radius > canvas.height || y - radius < 0) {
+            y = (Math.random() * canvas.height);
+        }
+
+        output.push(new Circle(x, y, radius, 1, 1))
     }
-
-    let speed = 0;
-    let dx = Math.random() * (speed * 2) - (speed / 2);
-
-    let yDir
-    Math.random() < .5 ? yDir = -1 : yDir = 1
-
-    let dy = Math.sqrt((speed ** 2) - (dx ** 2)) * yDir;
-
-    myCircle.draw(c)
-    // c.beginPath();
-    // c.arc(x, y, radius, 0, 2 * Math.PI, false);
-    // c.stroke();
-    
-    if (x + radius > canvas.width || x - radius < 0) {
-        dx = -dx
-    }
-
-    if (y + radius > canvas.height || y - radius < 0) {
-        dy = -dy
-    }
-
-    x += dx;
-    y += dy;
-    
+    return output
 }
 
-animate()
+let army = createRandomCircles(10)
+console.log(army)
+
+army.forEach(el => {
+    console.log(el)
+})
+
+function directionchanger(current, maxWidth, radius) {
+    current + radius > maxWidth || current - radius < 0 ? -1 : 1
+}
+
+function animate(circlesArr, c) {
+
+    c.clearRect(0, 0, canvas.width, canvas.height)
+    
+    circlesArr.forEach(circle => {
+        console.log(c)
+        c.beginPath();
+        c.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
+        console.log(circle.x)
+        c.stroke();
+
+        circle.move()
+        circle.x
+        
+    })
+    
+    requestAnimationFrame(animate(circlesArr, c));
+}
+
+animate(army, c)
 
