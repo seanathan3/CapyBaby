@@ -9,4 +9,5 @@ class Example {
         this.ele.children[0].innerText = "BARAAAAAAA!"
     }
 }
+
 export default Example;

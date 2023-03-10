@@ -30,8 +30,6 @@ class Circle {
     }
 }
 
-// const Circle = require('circle.js');
-
 const canvas = document.querySelector('canvas');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -163,3 +161,4 @@ function animate(circlesArr, c) {
 
 animate(army, c)
 
+export {  } from './canvas.js';
