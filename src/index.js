@@ -1,5 +1,7 @@
 const { _ } = require("core-js");
 
+import Circle from './scripts/circle'
+
 const canvas = document.querySelector('canvas')
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -14,60 +16,65 @@ function draw_circle(x, y, radius) {
 
 let radius = 50;
 
-function Circle(x, y, dx, dy, radius) {
-    this.x = x;
-    this.y = y;
-    this.dx = dx;
-    this.dy = dy;
-    this.radius = radius;
-
-    this.draw = function() {
-        c.fill();
-        c.beginPath();
-        c.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
-        c.stroke();
-    }
-
-    this.update = function() {
-        if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
-            this.dx = -this.dx
-        }
-    
-        if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
-            this.dy = -this.dy
-        }
-
-        this.x += this.dx;
-        this.y += this.dy;
-        this.draw();
-    }
-}
-
-
 let circleArr = [];
 
-for (let i = 0; i < 100; i++) {
-    let radius = 30;
+function init() {
 
-    let x = Math.random() * (canvas.width - radius * 2) + radius;
-    let y = Math.random() * (canvas.height - radius * 2) + radius;
-    let dx = (Math.random() - 0.5);
-    let dy = (Math.random() - 0.5);
+    circleArr = []
 
-    circleArr.push(new Circle(x, y, dx, dy, radius));
+    for (let i = 0; i < 1800; i++) {
+        let radius = (Math.random() * 3) + 1;
+    
+        let x = Math.random() * (canvas.width - radius * 2) + radius;
+        let y = Math.random() * (canvas.height - radius * 2) + radius;
+        let dx = (Math.random() - 0.5);
+        let dy = (Math.random() - 0.5);
+    
+        circleArr.push(new Circle(x, y, dx, dy, radius));
+    }
 }
 
+
 console.log(circleArr)
+
+let mouse = {
+    x: undefined,
+    y: undefined
+}
+
+let maxRadius = 40;
+let minRadius = 2;
+
+console.log(mouse)
+
+window.addEventListener('mousemove', (event) => {
+    console.log(mouse.x, mouse.y)
+    mouse.x = event.x;
+    mouse.y = event.y;
+})
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    init();
+})
 
 function animate() {
     requestAnimationFrame(animate);
     c.clearRect(0, 0, canvas.width, canvas.height);
 
     for (let i = 0; i < circleArr.length; i++) {
-        circleArr[i].update();
+        circleArr[i].update(mouse, maxRadius, minRadius);
     }
 
 
 }
 
-animate()
+console.log(c)
+
+init();
+animate();
+
+
+
