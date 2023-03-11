@@ -14,12 +14,12 @@ const background = new Image();
 const raft = new Raft(canvas, context)
 
 function animate() {
+    context.clearRect(0, 0, canvas.width, canvas.height)
     requestAnimationFrame(animate)
     background.src = './assets/aqua.jpg'
     context.drawImage(background, 0, 0)
     // const view = new View(canvas, context)
     raft.draw(context)
-    
 }
 
 raft.FlashSquares(10)
