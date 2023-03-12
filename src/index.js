@@ -3,24 +3,21 @@ import Raft from "./scripts/raft"
 import Player from "./scripts/player"
 import Game from "./scripts/game"
 
+//setting up canvas & context
 const canvas = document.querySelector('canvas')
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const context = canvas.getContext('2d')
-console.log(context)
+const context = canvas.getContext('2d');
 
-const background = new Image();
-const raft = new Raft(canvas, context)
+//instantiating background and raft
 
-function animate() {
-    context.clearRect(0, 0, canvas.width, canvas.height)
-    requestAnimationFrame(animate)
-    background.src = './assets/aqua.jpg'
-    context.drawImage(background, 0, 0)
-    // const view = new View(canvas, context)
-    raft.draw(context)
-}
+const game = new Game(canvas, context);
+new View(canvas, context, game).animate();
 
-raft.FlashSquares(10)
-animate()
+//creating game loop
+
+document.addEventListener('click', () => {
+    game.raft.flashSquares(5)
+})
+

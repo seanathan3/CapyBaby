@@ -6,7 +6,6 @@ class Raft {
         this.size = this.getSize()
         this.canvas = canvas
         this.c = context
-
     }
 
 
@@ -34,35 +33,39 @@ class Raft {
         return size
     }
 
-    FlashSquares(percent) {
+    flashSquares(percent) {
         let squaresToFlash = Math.floor(this.size * (percent / 100))
         let dimension = Math.sqrt(this.size)
 
         while (squaresToFlash > 0) {
+            //choosing a random square to flash
             let x = Math.floor((Math.random() * dimension))
             let y = Math.floor((Math.random() * dimension))
-            if (!this.flashing([x, y])) {
-                this.grid[x][y].color = '#FF0000'
+            
+            //checking if random square is already flashing (will try again if not)
+            let tile = this.grid[x][y];
+            if (!tile.flashing()) {
+                tile.flash();
                 squaresToFlash--
             }
-            console.log(squaresToFlash)
+            // console.log(squaresToFlash)
         }
         this.draw(this.c)
     }
 
-    flashing(square) {
-        let [x, y] = square
-        console.log(x)
-        console.log(y)
-        console.log(this.grid[x][y].color)
-        if (this.grid[x][y].color === '#FF0000') {
-            console.log('decrement')
-            return true
-        } else {
-            console.log('stay same')
-            return false
-        }
-    }
+    // flashing(tile) {
+    //     let [x, y] = square
+    //     console.log(x)
+    //     console.log(y)
+    //     console.log(this.grid[x][y].color)
+    //     if (this.grid[x][y].color === '#FF0000') {
+    //         console.log('decrement')
+    //         return true
+    //     } else {
+    //         console.log('stay same')
+    //         return false
+    //     }
+    // }
 
     dropSquares() {
         for (let i = 0; i < Math.sqrt(this.size); i++) {
