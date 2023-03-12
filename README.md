@@ -52,3 +52,5 @@ Thursday
  - E2E Testing, add extra features if time allots
 
 ***
+
+Sprites designed by: Rainloaf
