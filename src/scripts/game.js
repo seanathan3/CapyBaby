@@ -5,6 +5,7 @@ class Game {
     constructor(canvas, context) {
         this.raft = new Raft(canvas, context)
         this.player = new Player(canvas, context)
+        this.score = 0;
     }
 
     play() {

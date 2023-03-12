@@ -48,9 +48,7 @@ class Raft {
                 tile.flash();
                 squaresToFlash--
             }
-            // console.log(squaresToFlash)
         }
-        console.log(this)
         this.draw()
     }
 

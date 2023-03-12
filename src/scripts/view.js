@@ -11,6 +11,7 @@ class View {
         this.startY = (this.canvas.height / 2) - 250;
         this.game = game
         this.background = new Image();
+        this.background.src = './assets/aqua.jpg'
     }
 
     animate() {
@@ -19,11 +20,11 @@ class View {
         requestAnimationFrame(this.animate.bind(this));
     
         // load background image
-        this.background.src = './assets/aqua.jpg'
         this.c.drawImage(this.background, 0, 0);
         
         this.game.raft.draw();
         this.game.player.printPos();
+        this.scoreboard();
     }
 
     start() {
@@ -40,9 +41,19 @@ class View {
                 this.game.raft.dropSquares();
             } else {
                 this.game.raft.resetSquares();
+                this.game.score += 100;
             }
             counter++
         }, 800)
+    }
+
+    scoreboard() {
+        this.c.fillStyle = 'rgba(100, 100, 100, .6)'
+        this.c.fillRect(0, 0, 300, 100)
+        this.c.font = '30px sans serif'
+        this.c.fillStyle = '#FFFFFF'
+        this.c.fillText(`SCORE:      ${this.game.score}`, 30, 60)
+        console.log(this.c)
     }
 }
 
