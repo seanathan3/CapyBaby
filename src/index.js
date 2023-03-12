@@ -18,13 +18,13 @@ new View(canvas, context, game).start();
 //creating game loop
 
 document.addEventListener('keydown', event => {
-    if (event.key === 'f') {
-        game.raft.flashSquares(10)
+    if (event.key === 'w') {
+        game.player.move(0, -100);
     } else if (event.key === 'd') {
-        game.raft.dropSquares()
-    } else if (event.key === 'r') {
-        game.raft.resetSquares()
+        game.player.move(100, 0);
+    } else if (event.key === 's') {
+        game.player.move(0, 100);
+    } else if (event.key === 'a') {
+        game.player.move(-100, 0)
     }
 })
-
-document.addEventListener('')

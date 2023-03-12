@@ -42,7 +42,7 @@ class View {
                 this.game.raft.resetSquares();
             }
             counter++
-        }, 1500)
+        }, 800)
     }
 }
 
