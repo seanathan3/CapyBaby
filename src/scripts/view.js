@@ -22,7 +22,25 @@ class View {
         this.background.src = './assets/aqua.jpg'
         this.c.drawImage(this.background, 0, 0);
         
-        this.game.raft.draw(this.c);
+        this.game.raft.draw();
+    }
+
+    start() {
+        console.log(this)
+        let counter = 0
+        setInterval(() => {
+            if (counter % 3 === 0) {
+                this.game.raft.flashSquares(80);
+            } else if (counter % 3 === 1) {
+                this.game.raft.dropSquares();
+            } else {
+                this.game.raft.resetSquares();
+            }
+            counter++
+        }, 1500)
+
+
+        requestAnimationFrame(this.animate.bind(this))
     }
 }
 

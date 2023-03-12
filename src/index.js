@@ -13,11 +13,16 @@ const context = canvas.getContext('2d');
 //instantiating background and raft
 
 const game = new Game(canvas, context);
-new View(canvas, context, game).animate();
+new View(canvas, context, game).start();
 
 //creating game loop
 
-document.addEventListener('click', () => {
-    game.raft.flashSquares(5)
+document.addEventListener('keydown', event => {
+    if (event.key === 'f') {
+        game.raft.flashSquares(10)
+    } else if (event.key === 'd') {
+        game.raft.dropSquares()
+    } else if (event.key === 'r') {
+        game.raft.resetSquares()
+    }
 })
-

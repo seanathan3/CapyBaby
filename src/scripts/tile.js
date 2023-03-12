@@ -20,9 +20,14 @@ class Tile {
         this.color = Tile.SUNK;
         this.status = 'sunk'
     }
+
+    reset() {
+        this.color = this.originalColor;
+        this.status = 'floating';
+    }
 }
 
-Tile.FLASHING = '#FF0000'
-Tile.SUNK = '#FFFFFF'
+Tile.FLASHING = '#550077'
+Tile.SUNK = '#000000'
 
 export default Tile;

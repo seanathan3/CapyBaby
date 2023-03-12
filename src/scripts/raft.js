@@ -50,28 +50,16 @@ class Raft {
             }
             // console.log(squaresToFlash)
         }
-        this.draw(this.c)
+        console.log(this)
+        this.draw()
     }
-
-    // flashing(tile) {
-    //     let [x, y] = square
-    //     console.log(x)
-    //     console.log(y)
-    //     console.log(this.grid[x][y].color)
-    //     if (this.grid[x][y].color === '#FF0000') {
-    //         console.log('decrement')
-    //         return true
-    //     } else {
-    //         console.log('stay same')
-    //         return false
-    //     }
-    // }
 
     dropSquares() {
         for (let i = 0; i < Math.sqrt(this.size); i++) {
             for (let j = 0; j < Math.sqrt(this.size); j++) {
-                if (this.grid[i][j] === 'W') {
-                    this.grid[i][j] = 'X'
+                let tile = this.grid[i][j]
+                if (tile.status === 'flashing') {
+                    tile.sink();
                 }
             }
         }
@@ -80,12 +68,13 @@ class Raft {
     resetSquares() {
         for (let i = 0; i < Math.sqrt(this.size); i++) {
             for (let j = 0; j < Math.sqrt(this.size); j++) {
-                this.grid[i][j] = 'O'
+                let tile = this.grid[i][j]
+                tile.reset();
             }
         }   
     }
 
-    draw(ctx) {
+    draw() {
             let tileArr = []
             let color = undefined
             for (let i = 0; i < 7; i++) {
@@ -97,19 +86,14 @@ class Raft {
     
             let midX = this.canvas.width / 2
             let midY = this.canvas.height / 2
-    
-            for (let i = 0; i < tileArr; i++) {
-                let tile = tileArr[i]
-                this.c.fillStyle = tile.color
-                this.c.fillRect((tile.x * 100) + midX - 350, (tile.y * 100) + midY - 350, 100, 100)
-            }
         
             for (let i = 0; i < Math.sqrt(this.size); i++) {
                 for (let j = 0; j < Math.sqrt(this.size); j++) {
                     let tile = this.grid[i][j]
-                    this.c.fillStyle = tile.color;
-                    this.c.fillRect((tile.x * 100) + midX - 350, (tile.y * 100) + midY - 350, 100, 100)
-
+                    if (tile.status !== 'sunk') {
+                        this.c.fillStyle = tile.color;
+                        this.c.fillRect((tile.x * 100) + midX - 350, (tile.y * 100) + midY - 350, 100, 100)
+                    }
                 }
             }
     }
