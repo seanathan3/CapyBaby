@@ -6,6 +6,7 @@ class Player {
         this.pos = this.startPos
         this.c = context
         this.canvas = canvas
+        this.capy = new Image();
     }
 
     chooseSquare(x, y) {
@@ -14,9 +15,12 @@ class Player {
 
     printPos() {
         let [x, y] = this.pos
-        console.log(this.pos)
+        this.capy.src = '../assets/capybaby.png'
+        this.capy.width = 50;
+        this.capy.height = 50;
         this.c.fillStyle = '#000000'
         this.c.fillRect(x, y, this.size, this.size)
+        this.c.drawImage(this.capy,x, y)
     }
 
     move(dx, dy) {
