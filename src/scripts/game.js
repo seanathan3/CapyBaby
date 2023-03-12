@@ -4,7 +4,7 @@ import Player from './player'
 class Game {
     constructor(canvas, context) {
         this.raft = new Raft(canvas, context)
-        this.player = new Player()
+        this.player = new Player(canvas, context)
     }
 
     play() {

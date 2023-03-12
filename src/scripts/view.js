@@ -23,11 +23,16 @@ class View {
         this.c.drawImage(this.background, 0, 0);
         
         this.game.raft.draw();
+        this.game.player.printPos();
     }
 
     start() {
-        console.log(this)
-        let counter = 0
+        this.loop()
+        requestAnimationFrame(this.animate.bind(this))
+    }
+
+    loop() {
+        let counter = 0;
         setInterval(() => {
             if (counter % 3 === 0) {
                 this.game.raft.flashSquares(80);
@@ -38,9 +43,6 @@ class View {
             }
             counter++
         }, 1500)
-
-
-        requestAnimationFrame(this.animate.bind(this))
     }
 }
 

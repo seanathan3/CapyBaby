@@ -26,3 +26,5 @@ document.addEventListener('keydown', event => {
         game.raft.resetSquares()
     }
 })
+
+document.addEventListener('')
