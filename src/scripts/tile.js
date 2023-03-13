@@ -27,7 +27,7 @@ class Tile {
     }
 }
 
-Tile.FLASHING = '#550077'
+Tile.FLASHING = 'rgba(140, 80, 20, 0.8)'
 Tile.SUNK = '#000000'
 
 export default Tile;

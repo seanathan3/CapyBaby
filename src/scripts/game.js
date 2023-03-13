@@ -11,7 +11,6 @@ class Game {
     survive() {
         let x = Math.floor(this.player.gridPos[0] / 100)
         let y = Math.floor(this.player.gridPos[1] / 100)
-        console.log(this.raft.grid[x][y])
         if (this.raft.grid[x][y].status !== 'sunk') return true;
         return false;
     }

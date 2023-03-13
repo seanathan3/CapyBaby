@@ -18,6 +18,18 @@ new View(canvas, context, game).start();
 const speed = 5;
 //creating game loop
 
+const audio = document.createElement('audio')
+audio.src="./assets/sans.mp3"
+console.log(audio)
+
+let played = false;
+
+document.addEventListener('keypress', () => {
+    if (played === false) {
+        audio.play();
+        played = true;
+    }})
+
 document.addEventListener('keypress', event => {
     if (event.key === 'w') {
         game.player.dy = -speed;
