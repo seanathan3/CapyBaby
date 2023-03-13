@@ -17,14 +17,26 @@ new View(canvas, context, game).start();
 
 //creating game loop
 
-document.addEventListener('keydown', event => {
+document.addEventListener('keypress', event => {
     if (event.key === 'w') {
-        game.player.move(0, -100);
+        game.player.dy = -5;
     } else if (event.key === 'd') {
-        game.player.move(100, 0);
+        game.player.dx = 5;
     } else if (event.key === 's') {
-        game.player.move(0, 100);
+        game.player.dy = 5;
     } else if (event.key === 'a') {
-        game.player.move(-100, 0)
+        game.player.dx = -5;
+    }
+})
+
+document.addEventListener('keyup', event => {
+    if (event.key === 'w') {
+        game.player.dy = 0;
+    } else if (event.key === 'd') {
+        game.player.dx = 0;
+    } else if (event.key === 's') {
+        game.player.dy = 0;
+    } else if (event.key === 'a') {
+        game.player.dx = 0;
     }
 })

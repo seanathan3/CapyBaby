@@ -50,7 +50,7 @@ class View {
         let counter = 0;
         setInterval(() => {
             if (counter % 3 === 0) {
-                this.game.raft.flashSquares(80);
+                this.game.raft.flashSquares(60);
             } else if (counter % 3 === 1) {
                 this.game.raft.dropSquares();
             } else {
@@ -58,7 +58,7 @@ class View {
                 this.game.score += 100;
             }
             counter++
-        }, 800)
+        }, 1200)
     }
 
     scoreboard() {
@@ -69,5 +69,7 @@ class View {
         this.c.fillText(`SCORE:      ${this.game.score}`, 30, 60)
     }
 }
+
+
 
 export default View;
