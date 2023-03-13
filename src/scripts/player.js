@@ -15,7 +15,7 @@ class Player {
 
     printPos() {
         let [x, y] = this.pos
-        this.capy.src = '../assets/capybaby.png'
+        this.capy.src = '../assets/walk/capywalk1.png'
         this.c.fillStyle = '#000000'
         this.c.drawImage(this.capy,x, y)
     }
