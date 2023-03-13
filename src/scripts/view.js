@@ -11,7 +11,15 @@ class View {
         this.startY = (this.canvas.height / 2) - 250;
         this.game = game
         this.background = new Image();
-        this.background.src = './assets/aqua.jpg'
+        this.background.src = './assets/aqua.jpg';
+        this.frame = 0;
+        this.moveFrame = 0;
+        this.time = 0;
+        setInterval(() => {
+            this.time += 1;
+            console.log(this.time);
+        }, 1000)
+
     }
 
     animate() {
@@ -23,8 +31,14 @@ class View {
         this.c.drawImage(this.background, 0, 0);
         
         this.game.raft.draw();
-        this.game.player.printPos();
+        this.game.player.printPos(this.moveFrame);
         this.scoreboard();
+        this.frame += 1
+        if (this.moveFrame >= 39) {
+            this.moveFrame = 0;
+        } else {
+            this.moveFrame++
+        }
     }
 
     start() {
@@ -53,7 +67,6 @@ class View {
         this.c.font = '30px sans serif'
         this.c.fillStyle = '#FFFFFF'
         this.c.fillText(`SCORE:      ${this.game.score}`, 30, 60)
-        console.log(this.c)
     }
 }
 
