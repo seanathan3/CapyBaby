@@ -17,7 +17,6 @@ class View {
         this.time = 0;
         setInterval(() => {
             this.time += 1;
-            console.log(this.time);
         }, 1000)
 
     }
@@ -50,7 +49,7 @@ class View {
         let counter = 0;
         setInterval(() => {
             if (counter % 3 === 0) {
-                this.game.raft.flashSquares(60);
+                this.game.raft.flashSquares(80);
             } else if (counter % 3 === 1) {
                 this.game.raft.dropSquares();
             } else {

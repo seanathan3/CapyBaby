@@ -15,28 +15,40 @@ const context = canvas.getContext('2d');
 const game = new Game(canvas, context);
 new View(canvas, context, game).start();
 
+const speed = 5;
 //creating game loop
 
 document.addEventListener('keypress', event => {
     if (event.key === 'w') {
-        game.player.dy = -5;
+        game.player.dy = -speed;
     } else if (event.key === 'd') {
-        game.player.dx = 5;
+        game.player.dx = speed;
+        game.player.direction = 'right'
     } else if (event.key === 's') {
-        game.player.dy = 5;
+        game.player.dy = speed;
     } else if (event.key === 'a') {
-        game.player.dx = -5;
+        game.player.dx = -speed;
+        game.player.direction = 'left'
     }
 })
 
 document.addEventListener('keyup', event => {
     if (event.key === 'w') {
-        game.player.dy = 0;
+        if (game.player.dy === -speed) {
+            game.player.dy = 0;
+        }
+
     } else if (event.key === 'd') {
-        game.player.dx = 0;
+        if (game.player.dx === speed) {
+            game.player.dx = 0;
+        }
     } else if (event.key === 's') {
-        game.player.dy = 0;
+        if (game.player.dy === speed) {
+            game.player.dy = 0;
+        }
     } else if (event.key === 'a') {
-        game.player.dx = 0;
+        if (game.player.dx === -speed) {
+            game.player.dx = 0;
+        }
     }
 })
