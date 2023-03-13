@@ -31,15 +31,15 @@ class Player {
         this.c.fillStyle = '#000000'
 
         if (this.direction === 'left') {
-            this.c.drawImage(sprite, 75 + (animation * 240), 0, 240, 188, x, y, 90, 70);
+            this.c.drawImage(sprite, 75 + (animation * 240), 0, 240, 188, x - 17, y - 25, 90, 70);
         } else if (this.direction === 'right') {
-            this.c.drawImage(sprite, 50 + (animation * 240), 0, 240, 188, x, y, 90, 70);
+            this.c.drawImage(sprite, 50 + (animation * 240), 0, 240, 188, x + 20, y - 25, 90, 70);
         } else if (this.direction === 'idle') {
-            this.c.drawImage(sprite, 50 + (animation * 240), 0, 240, 188, x, y, 90, 70);
+            this.c.drawImage(sprite, 30 + (animation * 220), 0, 240, 188, x - 17, y - 25, 117, 91);
         } else if (this.direction === 'up') {
-            this.c.drawImage(sprite, 50 + (animation * 240), 0, 240, 188, x, y, 90, 70);
+            this.c.drawImage(sprite, 10 + (animation * 215), 0, 215, 215, x, y - 25, 80, 80);
         } else if (this.direction === 'down') {
-            this.c.drawImage(sprite, 50 + (animation * 240), 0, 240, 188, x, y, 90, 70);
+            this.c.drawImage(sprite, 10 + (animation * 215), 0, 215, 215, x, y - 25, 80, 80);
         }
     }
 
@@ -56,6 +56,12 @@ class Player {
             return this.capyLeft;
         } else if (this.direction === 'right') {
             return this.capyRight;
+        } else if (this.direction === 'up') {
+            return this.capyUp;
+        } else if (this.direction === 'down') {
+            return this.capyDown;
+        } else if (this.direction === 'idle') {
+            return this.capyIdle;
         }
     }
 

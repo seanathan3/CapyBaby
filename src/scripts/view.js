@@ -17,6 +17,7 @@ class View {
         this.time = 0;
         setInterval(() => {
             this.time += 1;
+            console.log(game.player.pos)
         }, 1000)
 
     }

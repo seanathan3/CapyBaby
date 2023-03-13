@@ -21,11 +21,13 @@ const speed = 5;
 document.addEventListener('keypress', event => {
     if (event.key === 'w') {
         game.player.dy = -speed;
+        game.player.direction = 'up'
     } else if (event.key === 'd') {
         game.player.dx = speed;
         game.player.direction = 'right'
     } else if (event.key === 's') {
         game.player.dy = speed;
+        game.player.direction = 'down'
     } else if (event.key === 'a') {
         game.player.dx = -speed;
         game.player.direction = 'left'
@@ -36,19 +38,34 @@ document.addEventListener('keyup', event => {
     if (event.key === 'w') {
         if (game.player.dy === -speed) {
             game.player.dy = 0;
+            if (game.player.dx === 0) {
+                game.player.direction = 'idle';
+            }
         }
 
     } else if (event.key === 'd') {
         if (game.player.dx === speed) {
             game.player.dx = 0;
+            if (game.player.dy === 0) {
+                game.player.direction = 'idle';
+            }
         }
+
     } else if (event.key === 's') {
         if (game.player.dy === speed) {
             game.player.dy = 0;
+            if (game.player.dx === 0) {
+                game.player.direction = 'idle';
+            }
         }
+
     } else if (event.key === 'a') {
         if (game.player.dx === -speed) {
             game.player.dx = 0;
+            if (game.player.dy === 0) {
+                game.player.direction = 'idle';
+            }
+
         }
     }
 })
