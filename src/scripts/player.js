@@ -11,6 +11,7 @@ class Player {
         this.height = 60;
         this.startPos = [canvas.width/2 - this.width/2, canvas.height/2 - this.height/2]
         this.pos = this.startPos
+        this.gridPos = [357, 357]
         this.c = context;
         this.canvas = canvas;
         this.dx = 0;
@@ -48,10 +49,11 @@ class Player {
         x += dx
         y += dy
         this.pos = [x, y]
+        this.gridPos[0] += dx;
+        this.gridPos[1] += dy;
     }
 
     chooseSprite() {
-        console.log(this.direction)
         if (this.direction === 'left') {
             return this.capyLeft;
         } else if (this.direction === 'right') {

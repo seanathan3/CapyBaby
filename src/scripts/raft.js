@@ -88,6 +88,8 @@ class Raft {
             for (let i = 0; i < Math.sqrt(this.size); i++) {
                 for (let j = 0; j < Math.sqrt(this.size); j++) {
                     let tile = this.grid[i][j]
+                    tile.windowX = midX - 350 + (100 * i);
+                    tile.windowY = midY - 350 + (100 * j);
                     if (tile.status !== 'sunk') {
                         this.c.fillStyle = tile.color;
                         this.c.fillRect((tile.x * 100) + midX - 350, (tile.y * 100) + midY - 350, 100, 100)

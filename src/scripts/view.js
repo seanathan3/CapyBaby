@@ -17,7 +17,7 @@ class View {
         this.time = 0;
         setInterval(() => {
             this.time += 1;
-            console.log(game.player.pos)
+            console.log(game.survive())
         }, 1000)
 
     }
@@ -25,8 +25,6 @@ class View {
     animate() {
         // set up animation to render new frames
         this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        requestAnimationFrame(this.animate.bind(this));
-    
         // load background image
         this.c.drawImage(this.background, 0, 0);
         
@@ -39,7 +37,19 @@ class View {
         } else {
             this.moveFrame++
         }
+
+        if (this.game.survive()) {
+            requestAnimationFrame(this.animate.bind(this));
+        } else {
+            this.c.fillStyle = 'rgba(0, 0, 0, 1)'
+            this.c.fillRect(this.canvas.width / 2 - 150, this.canvas.width / 2 - 50, 300, 100)
+            this.c.fillStyle = 'rgba(255, 255, 255, 1)'
+            this.c.fillText('Game Over', this.canvas.width / 2 - 75, this.canvas.height / 2 - 25)
+        }
+        console.log('still going')
+
     }
+
 
     start() {
         this.loop()
