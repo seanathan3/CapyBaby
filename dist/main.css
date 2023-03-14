@@ -16,4 +16,28 @@ body {
 body {
   margin: 0;
   background-color: "#747F7F";
+  font-family: fantasy;
+}
+
+header {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: bisque;
+}
+
+h1 {
+  margin: 0;
+}
+
+.logos {
+  display: flex;
+  align-items: center;
+}
+
+.audio {
+  display: flex;
+  justify-content: center;
+  width: 55px;
 }

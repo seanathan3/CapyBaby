@@ -6,7 +6,7 @@ import Game from "./scripts/game"
 //setting up canvas & context
 const canvas = document.querySelector('canvas')
 canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.height = window.innerHeight - 50;
 
 const context = canvas.getContext('2d');
 

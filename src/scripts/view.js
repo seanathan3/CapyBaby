@@ -122,11 +122,11 @@ class View {
         setTimeout(() => {
             this.c.drawImage(this.background, 0, 0, 2000, 1000, 0, 0, this.canvas.width, this.canvas.height);
 
-            this.c.fillStyle = 'rgba(0, 0, 0, 1)'
-            this.c.fillRect(this.canvas.width / 2 - 150, this.canvas.height / 2 - 350, 300, 100)
+            // this.c.fillStyle = 'rgba(0, 0, 0, 1)'
+            // this.c.fillRect(this.canvas.width / 2 - 150, this.canvas.height / 2 - 350, 300, 100)
             this.c.fillStyle = 'rgba(255, 255, 255, 1)'
             this.c.font = '30px sans serif'
-            this.c.fillText('CapyBaby', this.canvas.width / 2 - 65, this.canvas.height / 2 - 290)
+            // this.c.fillText('CapyBaby', this.canvas.width / 2 - 65, this.canvas.height / 2 - 290)
 
             this.c.fillText('click to start', this.canvas.width / 2 - 70, this.canvas.height / 2)
         }, 100)
@@ -156,10 +156,10 @@ class View {
 
     scoreboard() {
         this.c.fillStyle = 'rgba(100, 100, 100, .6)'
-        this.c.fillRect(0, 0, 300, 100)
-        this.c.font = '30px sans serif'
+        this.c.fillRect(0, 0, 230, 40)
+        this.c.font = '30px fantasy'
         this.c.fillStyle = '#FFFFFF'
-        this.c.fillText(`SCORE:      ${this.game.score}`, 30, 60)
+        this.c.fillText(`SCORE:      ${this.game.score}`, 0, 30)
     }
 
     drawBackground() {

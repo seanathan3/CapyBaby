@@ -6,6 +6,7 @@ class Game {
         this.raft = new Raft(canvas, context)
         this.player = new Player(canvas, context)
         this.score = 0;
+        this.difficulty = 'medium';
     }
 
     survive() {
@@ -14,6 +15,8 @@ class Game {
         if (this.raft.grid[x][y].status !== 'sunk') return true;
         return false;
     }
+
+
 
 
     
