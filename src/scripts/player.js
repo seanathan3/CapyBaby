@@ -5,7 +5,6 @@ class Player {
     }
 
     constructor(canvas, context) {
-        this.makeSprites();
         this.status = 'alive'
         this.width = 90;
         this.height = 60;
@@ -17,6 +16,17 @@ class Player {
         this.dx = 0;
         this.dy = 0;
         this.direction = 'left';
+
+        this.capyLeft = new Image();
+        this.capyLeft.src = './assets/the_real_left.png';
+        this.capyRight = new Image();
+        this.capyRight.src = './assets/the_real_right.png';
+        this.capyIdle = new Image();
+        this.capyIdle.src = './assets/the_real_idle.png';
+        this.capyDown = new Image();
+        this.capyDown.src = './assets/the_real_front.png';
+        this.capyUp = new Image();
+        this.capyUp.src = './assets/the_real_back.png'
     }
 
     chooseSquare(x, y) {
@@ -69,22 +79,18 @@ class Player {
 
     makeSprites() {
         this.capyLeft = new Image();
-        this.capyLeft.src = '../assets/the_real_left.png';
+        this.capyLeft.src = './assets/the_real_left.png';
         this.capyRight = new Image();
-        this.capyRight.src = '../assets/the_real_right.png';
+        this.capyRight.src = './assets/the_real_right.png';
         this.capyIdle = new Image();
-        this.capyIdle.src = '../assets/the_real_idle.png';
+        this.capyIdle.src = './assets/the_real_idle.png';
         this.capyDown = new Image();
-        this.capyDown.src = '../assets/the_real_front.png';
+        this.capyDown.src = './assets/the_real_front.png';
         this.capyUp = new Image();
-        this.capyUp.src = '../assets/the_real_back.png'
+        this.capyUp.src = './assets/the_real_back.png'
     }
 }
 
-// Player.SPRITES = {
-//     left: this.capyLeft,
-//     right: this.capyRight
-// }
 
 
 

@@ -19,7 +19,7 @@ const speed = 5;
 //creating game loop
 
 const audio = document.createElement('audio')
-audio.src="./assets/sans.mp3"
+audio.src="./assets/sans_trim.mp3.mov"
 console.log(audio)
 
 let played = false;
@@ -27,19 +27,24 @@ let played = false;
 document.addEventListener('keypress', () => {
     if (played === false) {
         audio.play();
+        audio.loop = true;
         played = true;
     }})
 
 document.addEventListener('keypress', event => {
     if (event.key === 'w') {
         game.player.dy = -speed;
-        game.player.direction = 'up'
+        if (game.player.dx === 0) {
+            game.player.direction = 'up'
+        }
     } else if (event.key === 'd') {
         game.player.dx = speed;
         game.player.direction = 'right'
     } else if (event.key === 's') {
         game.player.dy = speed;
-        game.player.direction = 'down'
+        if (game.player.dx === 0) {
+            game.player.direction = 'down'
+        }
     } else if (event.key === 'a') {
         game.player.dx = -speed;
         game.player.direction = 'left'
@@ -60,6 +65,10 @@ document.addEventListener('keyup', event => {
             game.player.dx = 0;
             if (game.player.dy === 0) {
                 game.player.direction = 'idle';
+            } else if (game.player.dy > 0) {
+                game.player.direction = 'down'
+            } else {
+                game.player.direction = 'up'
             }
         }
 
@@ -74,8 +83,13 @@ document.addEventListener('keyup', event => {
     } else if (event.key === 'a') {
         if (game.player.dx === -speed) {
             game.player.dx = 0;
+                    
             if (game.player.dy === 0) {
                 game.player.direction = 'idle';
+            } else if (game.player.dy > 0) {
+                game.player.direction = 'down'
+            } else {
+                game.player.direction = 'up'
             }
 
         }

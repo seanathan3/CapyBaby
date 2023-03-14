@@ -90,11 +90,15 @@ class View {
     }
 
     drawBackground() {
-        let increment = Math.floor(this.frame / 50)
-        if (increment % 2 === 0) {
-            this.c.drawImage(this.background, 0, 0, 2000, 1000, 0, 0, this.canvas.width, this.canvas.height)
+        let increment = Math.floor(this.frame / 20)
+        if (increment % 4 === 3) {
+            this.c.drawImage(this.background, 0, 0, 2000, 1000, 0, 0, this.canvas.width, this.canvas.height);
+        } else if (increment % 4 === 2) {
+            this.c.drawImage(this.background, 50, 10, 2000, 1000, 0, 0, this.canvas.width, this.canvas.height);
+        } else if (increment % 4 === 1) {
+            this.c.drawImage(this.background, 100, 0, 2000, 1000, 0, 0, this.canvas.width, this.canvas.height);
         } else {
-            this.c.drawImage(this.background, 50, 50, 2000, 1000, 0, 0, this.canvas.width, this.canvas.height)
+            this.c.drawImage(this.background, 150, 10, 2000, 1000, 0, 0, this.canvas.width, this.canvas.height);
         }
     }
 }
