@@ -16,17 +16,72 @@ class View {
         this.moveFrame = 0;
         this.timer = 1000;
         this.counter = 0;
-        this.interval = setInterval(() => {
-            if (this.counter % 3 === 0) {
-                this.game.raft.flashSquares(50 + this.counter);
-            } else if (this.counter % 3 === 1) {
-                this.game.raft.dropSquares();
-            } else {
-                this.game.raft.resetSquares();
-                this.game.score += 100;
+        this.speed = 5;
+
+        document.addEventListener('keypress', event => {
+            if (event.key === 'w') {
+                this.game.player.dy = -this.speed;
+                if (this.game.player.dx === 0) {
+                    this.game.player.direction = 'up'
+                }
+            } else if (event.key === 'd') {
+                this.game.player.dx = this.speed;
+                this.game.player.direction = 'right'
+            } else if (event.key === 's') {
+                this.game.player.dy = this.speed;
+                if (this.game.player.dx === 0) {
+                    this.game.player.direction = 'down'
+                }
+            } else if (event.key === 'a') {
+                this.game.player.dx = -this.speed;
+                this.game.player.direction = 'left'
             }
-            this.counter++
-        }, this.timer)
+        })
+
+        document.addEventListener('keyup', event => {
+            if (event.key === 'w') {
+                if (this.game.player.dy === -this.speed) {
+                    this.game.player.dy = 0;
+                    if (this.game.player.dx === 0) {
+                        this.game.player.direction = 'idle';
+                    }
+                }
+        
+            } else if (event.key === 'd') {
+                if (this.game.player.dx === this.speed) {
+                    this.game.player.dx = 0;
+                    if (this.game.player.dy === 0) {
+                        this.game.player.direction = 'idle';
+                    } else if (this.game.player.dy > 0) {
+                        this.game.player.direction = 'down'
+                    } else {
+                        this.game.player.direction = 'up'
+                    }
+                }
+        
+            } else if (event.key === 's') {
+                if (game.player.dy === this.speed) {
+                    game.player.dy = 0;
+                    if (game.player.dx === 0) {
+                        game.player.direction = 'idle';
+                    }
+                }
+        
+            } else if (event.key === 'a') {
+                if (game.player.dx === -this.speed) {
+                    game.player.dx = 0;
+                            
+                    if (game.player.dy === 0) {
+                        game.player.direction = 'idle';
+                    } else if (game.player.dy > 0) {
+                        game.player.direction = 'down'
+                    } else {
+                        game.player.direction = 'up'
+                    }
+        
+                }
+            }
+        })
 
     }
 
@@ -57,13 +112,31 @@ class View {
             this.c.fillText('Game Over', this.canvas.width / 2 - 75, this.canvas.height / 2)
 
             clearInterval(this.interval)
+            document.addEventListener('click', this.restartGame.bind(this), {once: true})
         }
 
     }
 
 
     start() {
-        requestAnimationFrame(this.animate.bind(this))
+        setTimeout(() => {
+            this.c.drawImage(this.background, 0, 0, 2000, 1000, 0, 0, this.canvas.width, this.canvas.height);
+
+            this.c.fillStyle = 'rgba(0, 0, 0, 1)'
+            this.c.fillRect(this.canvas.width / 2 - 150, this.canvas.height / 2 - 350, 300, 100)
+            this.c.fillStyle = 'rgba(255, 255, 255, 1)'
+            this.c.font = '30px sans serif'
+            this.c.fillText('CapyBaby', this.canvas.width / 2 - 65, this.canvas.height / 2 - 290)
+
+            this.c.fillText('click to start', this.canvas.width / 2 - 70, this.canvas.height / 2)
+        }, 100)
+
+        const start = document.createElement('button')
+
+        document.addEventListener('click', () => {
+            this.interval = setInterval(this.cycle.bind(this), this.timer)
+            requestAnimationFrame(this.animate.bind(this))
+        }, {once: true})
     }
 
     loop() {
@@ -100,6 +173,25 @@ class View {
         } else {
             this.c.drawImage(this.background, 150, 10, 2000, 1000, 0, 0, this.canvas.width, this.canvas.height);
         }
+    }
+
+    restartGame() {
+        document.removeEventListener('click', this.restartGame.bind(this))
+        this.c.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        let new_game = new Game(this.canvas, this.c);
+        new View(this.canvas, this.c, new_game).start();
+    }
+
+    cycle() { 
+        if (this.counter % 3 === 0) {
+            this.game.raft.flashSquares(50 + this.counter);
+        } else if (this.counter % 3 === 1) {
+            this.game.raft.dropSquares();
+        } else {
+            this.game.raft.resetSquares();
+            this.game.score += 100;
+        }
+        this.counter++
     }
 }
 

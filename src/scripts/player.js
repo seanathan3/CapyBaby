@@ -15,7 +15,7 @@ class Player {
         this.canvas = canvas;
         this.dx = 0;
         this.dy = 0;
-        this.direction = 'left';
+        this.direction = 'idle';
 
         this.capyLeft = new Image();
         this.capyLeft.src = './assets/the_real_left.png';
@@ -64,7 +64,6 @@ class Player {
     }
 
     chooseSprite() {
-        console.log(this.capyLeft)
         if (this.direction === 'left') {
             return this.capyLeft;
         } else if (this.direction === 'right') {
