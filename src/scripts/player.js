@@ -64,6 +64,7 @@ class Player {
     }
 
     chooseSprite() {
+        console.log(this.capyLeft)
         if (this.direction === 'left') {
             return this.capyLeft;
         } else if (this.direction === 'right') {
@@ -77,18 +78,6 @@ class Player {
         }
     }
 
-    makeSprites() {
-        this.capyLeft = new Image();
-        this.capyLeft.src = './assets/the_real_left.png';
-        this.capyRight = new Image();
-        this.capyRight.src = './assets/the_real_right.png';
-        this.capyIdle = new Image();
-        this.capyIdle.src = './assets/the_real_idle.png';
-        this.capyDown = new Image();
-        this.capyDown.src = './assets/the_real_front.png';
-        this.capyUp = new Image();
-        this.capyUp.src = './assets/the_real_back.png'
-    }
 }
 
 
