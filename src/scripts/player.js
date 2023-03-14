@@ -56,11 +56,16 @@ class Player {
 
     move(dx, dy) {
         let [x, y] = this.pos;
-        x += dx
-        y += dy
+        if (this.gridPos[0] + dx > 0 && this.gridPos[0] + dx < 700) {
+            x += dx
+            this.gridPos[0] += dx;
+        }
+
+        if (this.gridPos[1] + dy > 0 && this.gridPos[1] + dy < 700) {
+            y += dy
+            this.gridPos[1] += dy;
+        }
         this.pos = [x, y]
-        this.gridPos[0] += dx;
-        this.gridPos[1] += dy;
     }
 
     chooseSprite() {

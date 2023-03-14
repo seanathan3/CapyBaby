@@ -23,7 +23,7 @@ audio.src="./assets/sans_trim.mp3.mov"
 
 let played = false;
 
-document.addEventListener('keypress', () => {
+document.addEventListener('keydown', () => {
     if (played === false) {
         audio.play();
         audio.loop = true;

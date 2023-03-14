@@ -14,9 +14,9 @@ class View {
         this.background.src = './assets/pokemon_sea.png';
         this.frame = 0;
         this.moveFrame = 0;
-        this.timer = 1000;
+        this.timer = 700;
         this.counter = 0;
-        this.speed = 5;
+        this.speed = 10;
 
         document.addEventListener('keypress', event => {
             if (event.key === 'w') {
@@ -128,12 +128,10 @@ class View {
             this.c.font = '30px sans serif'
             // this.c.fillText('CapyBaby', this.canvas.width / 2 - 65, this.canvas.height / 2 - 290)
 
-            this.c.fillText('click to start', this.canvas.width / 2 - 70, this.canvas.height / 2)
+            this.instructions();
         }, 100)
 
-        const start = document.createElement('button')
-
-        document.addEventListener('click', () => {
+        document.addEventListener('keydown', () => {
             this.interval = setInterval(this.cycle.bind(this), this.timer)
             requestAnimationFrame(this.animate.bind(this))
         }, {once: true})
@@ -192,6 +190,14 @@ class View {
             this.game.score += 100;
         }
         this.counter++
+    }
+
+    instructions() {
+        this.c.fillStyle = 'rgba(255, 255, 255, 1)'
+        this.c.fillText('Stay away from the flashing squares!', this.canvas.width / 2 - 350, this.canvas.height / 2 - 300)
+        this.c.fillText('Move with WASD', this.canvas.width / 2 - 350, this.canvas.height / 2 - 200)
+        this.c.fillText('Press any key to start!', this.canvas.width / 2 - 350, this.canvas.height / 2 - 100)
+        
     }
 }
 
