@@ -14,9 +14,9 @@ class View {
         this.background.src = './assets/pokemon_sea.png';
         this.frame = 0;
         this.moveFrame = 0;
-        this.timer = 700;
-        this.counter = 0;
-        this.speed = 10;
+        this.timer = 940;
+        this.counter = 3;
+        this.speed = 7;
 
         document.addEventListener('keypress', event => {
             if (event.key === 'w') {
@@ -105,12 +105,7 @@ class View {
         if (this.game.survive()) {
             requestAnimationFrame(this.animate.bind(this));
         } else {
-            this.c.fillStyle = 'rgba(0, 0, 0, 0.7)'
-            // this.c.fillRect(this.canvas.width / 2 - 150, this.canvas.height / 2 - 50, 300, 100)
-            this.c.fillRect(0, 0, this.canvas.width, this.canvas.height)
-            this.c.fillStyle = 'rgba(255, 255, 255, 1)'
-            this.c.fillText('Game Over', this.canvas.width / 2 - 75, this.canvas.height / 2)
-
+            this.gameOver();
             clearInterval(this.interval)
             document.addEventListener('click', this.restartGame.bind(this), {once: true})
         }
@@ -132,8 +127,28 @@ class View {
         }, 100)
 
         document.addEventListener('keydown', () => {
-            this.interval = setInterval(this.cycle.bind(this), this.timer)
-            requestAnimationFrame(this.animate.bind(this))
+            this.c.drawImage(this.background, 0, 0)
+            this.game.raft.draw();
+            this.c.fillStyle = 'rgba(255, 255, 255, 1)'
+            setTimeout(() => {
+                this.c.font = '300px sans serif'
+                this.c.fillText('3', this.canvas.width / 2 - 350, this.canvas.height / 2)
+            }, 100)
+
+            setTimeout(() => {
+                this.c.font = '300px sans serif'
+                this.c.fillText('2', this.canvas.width / 2 - 75, this.canvas.height / 2)
+            }, 1050)
+
+            setTimeout(() => {
+                this.c.font = '300px sans serif'
+                this.c.fillText('1', this.canvas.width / 2 + 200, this.canvas.height / 2)
+            }, 2000)
+            
+            setTimeout(() => {
+                this.interval = setInterval(this.cycle.bind(this), this.timer)
+                requestAnimationFrame(this.animate.bind(this))
+            }, 2950)
         }, {once: true})
     }
 
@@ -182,7 +197,28 @@ class View {
 
     cycle() { 
         if (this.counter % 3 === 0) {
-            this.game.raft.flashSquares(50 + this.counter);
+            if (this.counter <= 6) {
+                this.game.raft.flashSquares(40);
+            } else if (this.counter <= 12) {
+                this.game.raft.flashSquares(60);
+            } else if (this.counter <= 18) {
+                this.game.raft.flashSquares(75);
+            } else if (this.counter <= 24) {
+                this.game.raft.flashSquares(82);
+            } else if (this.counter <= 30) {
+                this.game.raft.flashSquares(86);
+            } else if (this.counter <= 39) {
+                this.game.raft.flashSquares(90);
+            } else if (this.counter <= 48) {
+                this.game.raft.flashSquares(92);
+            } else if (this.counter <= 57) {
+                this.game.raft.flashSquares(95);
+            } else if (this.counter <= 66) {
+                this.game.raft.flashSquares(97);
+            } else {
+                this.game.raft.flashSquares(98);
+            }
+            // this.game.raft.flashSquares(50 + this.counter);
         } else if (this.counter % 3 === 1) {
             this.game.raft.dropSquares();
         } else {
@@ -194,11 +230,24 @@ class View {
 
     instructions() {
         this.c.fillStyle = 'rgba(255, 255, 255, 1)'
-        this.c.fillText('Stay away from the flashing squares!', this.canvas.width / 2 - 350, this.canvas.height / 2 - 300)
-        this.c.fillText('Move with WASD', this.canvas.width / 2 - 350, this.canvas.height / 2 - 200)
-        this.c.fillText('Press any key to start!', this.canvas.width / 2 - 350, this.canvas.height / 2 - 100)
-        
+        this.c.fillText('CapyBaby is late for school! Luckily a speedy, but dangerous', this.canvas.width / 2 - 350, this.canvas.height / 2 - 300);
+        this.c.fillText('raft is here to give CapyBaby a ride. Avoid the flashing squares', this.canvas.width / 2 - 350, this.canvas.height / 2 - 250);
+        this.c.fillText('to stay afloat before the bell rings!', this.canvas.width / 2 - 350, this.canvas.height / 2 - 200);
+        this.c.fillText('Move with *WASD*', this.canvas.width / 2 - 350, this.canvas.height / 2 - 100);
+        this.c.fillText('Press any key to start!', this.canvas.width / 2 - 350, this.canvas.height / 2 + 100);
     }
+
+    gameOver() {
+        this.c.fillStyle = 'rgba(0, 0, 0, 0.7)'
+            this.c.fillRect(0, 0, this.canvas.width, this.canvas.height)
+            this.c.fillStyle = 'rgba(255, 255, 255, 1)'
+            this.c.fillText('Game Over', this.canvas.width / 2 - 75, this.canvas.height / 2 - 200)
+            this.c.fillText('Final Score', this.canvas.width / 2 - 78, this.canvas.height / 2)
+            this.c.fillText(`${this.game.score}`, this.canvas.width / 2 - 25, this.canvas.height / 2 + 50)
+            this.c.fillText('click to restart', this.canvas.width / 2 - 100, this.canvas.height / 2 + 200)
+    }
+
+
 }
 
 

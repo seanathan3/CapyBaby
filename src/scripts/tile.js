@@ -28,6 +28,7 @@ class Tile {
 }
 
 Tile.FLASHING = 'rgba(140, 80, 20, 0.8)'
+// Tile.FLASHING = `rgba(140, 80, 20, ${Math.random() * 0.2 + 0.7})`
 Tile.SUNK = '#000000'
 
 export default Tile;
