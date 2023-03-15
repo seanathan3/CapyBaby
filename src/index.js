@@ -18,24 +18,46 @@ new View(canvas, context, game).start();
 const audio = document.createElement('audio')
 audio.src="./assets/sans_trim.mp3.mov"
 
-let played = false;
+let playing = false;
 
 document.addEventListener('keydown', () => {
-    if (played === false) {
+    if (playing === false) {
         audio.play();
         audio.loop = true;
-        played = true;
-    }})
+        playing = true;
+    }}, {once: true})
+
+let playButton = document.querySelector('#sound')
+
+playButton.addEventListener('click', () => {
+    if (playing === true) {
+        audio.pause();
+        playing = false;
+        playButton.setAttribute('src', './assets/sound_off.png')
+    } else {
+        audio.play();
+        playing = true;
+        playButton.setAttribute('src', './assets/sound_on.png')
+    }
+})
+
+let modal = document.getElementById('myModal')
+let btn = document.getElementById('myBtn')
+let span = document.getElementsByClassName('close')[0]
 
 
-// let modal = document.getElementById('myModal')
-// let btn = document.getElementById('myBtn')
-// let span = document.getElementsByClassName('close')[0]
+modal.addEventListener('click', (event) => {
+    modal.style.display = 'none';
+})
 
-// btn.onclick = function() {
-//     modal.style.display = 'block';
-// }
+btn.onclick = function() {
+    modal.style.display = 'block';
+}
 
-// span.onclick = function() {
-//     modal.style.display = 'none'
-// }
+span.onclick = function() {
+    modal.style.display = 'none'
+}
+
+document.addEventListener('click', event => {
+    console.log(event.x, event.y)
+})

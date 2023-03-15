@@ -39,7 +39,7 @@ class Player {
 
     printPos(frame) {
         this.move(this.dx, this.dy)
-        let animation = Math.floor(frame / 8)
+        let animation = Math.floor(frame / 6)
         let sprite = this.chooseSprite()
 
         let [x, y] = this.pos

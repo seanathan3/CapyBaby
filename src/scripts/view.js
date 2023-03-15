@@ -17,6 +17,11 @@ class View {
         this.timer = 940;
         this.counter = 3;
         this.speed = 7;
+        this.started = false;
+        this.velocity = 1.5;
+        this.origVel = this.velocity;
+        this.dy = 0;
+        this.gravity = 0.08;
 
         document.addEventListener('keypress', event => {
             if (event.key === 'w') {
@@ -98,7 +103,7 @@ class View {
         this.game.player.printPos(this.moveFrame);
         this.scoreboard();
         this.frame += 1
-        if (this.moveFrame >= 39) {
+        if (this.moveFrame >= 29) {
             this.moveFrame = 0;
         } else {
             this.moveFrame++
@@ -124,33 +129,33 @@ class View {
             this.c.fillStyle = 'rgba(255, 255, 255, 1)'
             this.c.font = '30px sans serif'
             // this.c.fillText('CapyBaby', this.canvas.width / 2 - 65, this.canvas.height / 2 - 290)
-
-            this.instructions();
+            this.animateStart();
         }, 100)
 
         document.addEventListener('keydown', () => {
+            this.started = true;
             this.c.drawImage(this.background, 0, 0)
             this.game.raft.draw();
             this.c.fillStyle = 'rgba(255, 255, 255, 1)'
             setTimeout(() => {
                 this.c.font = '300px sans serif'
                 this.c.fillText('3', this.canvas.width / 2 - 350, this.canvas.height / 2)
-            }, 100)
+            }, 500)
 
             setTimeout(() => {
                 this.c.font = '300px sans serif'
                 this.c.fillText('2', this.canvas.width / 2 - 75, this.canvas.height / 2)
-            }, 1050)
+            }, 1450)
 
             setTimeout(() => {
                 this.c.font = '300px sans serif'
                 this.c.fillText('1', this.canvas.width / 2 + 200, this.canvas.height / 2)
-            }, 2000)
+            }, 2400)
             
             setTimeout(() => {
                 this.interval = setInterval(this.cycle.bind(this), this.timer)
                 requestAnimationFrame(this.animate.bind(this))
-            }, 2950)
+            }, 3350)
         }, {once: true})
     }
 
@@ -191,8 +196,8 @@ class View {
     }
 
     restartGame() {
-        document.removeEventListener('click', this.restartGame.bind(this))
-        this.c.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        // document.removeEventListener('click', this.restartGame.bind(this))
+        // this.c.clearRect(0, 0, this.canvas.width, this.canvas.height)
         let new_game = new Game(this.canvas, this.c);
         new View(this.canvas, this.c, new_game).start();
     }
@@ -230,9 +235,10 @@ class View {
         this.counter++
     }
 
-    instructions() {
+    instructions(yAdjustor) {
+        console.log(this.c)
         this.c.font = '30px fantasy'
-        this.c.fillText('Press any key to start!', this.canvas.width / 2 - 180, this.canvas.height / 2 + 30);
+        this.c.fillText('Press any key to start!', this.canvas.width / 2 - 148, this.canvas.height / 2 + 30 - yAdjustor);
     }
 
     gameOver() {
@@ -243,6 +249,25 @@ class View {
             this.c.fillText('Final Score', this.canvas.width / 2 - 78, this.canvas.height / 2)
             this.c.fillText(`${this.game.score}`, this.canvas.width / 2 - 25, this.canvas.height / 2 + 50)
             this.c.fillText('click to restart', this.canvas.width / 2 - 100, this.canvas.height / 2 + 200)
+    }
+
+
+    animateStart() {
+        if (this.started === false) {
+            requestAnimationFrame(this.animateStart.bind(this));
+        }
+        this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        if (this.dy >= 0) {
+            this.dy += this.velocity;
+            this.velocity -= this.gravity;
+        } else {
+            this.velocity = this.origVel;
+            this.dy = 0;
+        }
+
+        this.c.drawImage(this.background, 0, 0);
+        this.instructions(this.dy);
+        this.startFrame++
     }
 
 

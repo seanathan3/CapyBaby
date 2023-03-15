@@ -86,8 +86,8 @@ class Raft {
             let tileArr = []
             let color = undefined
             let orientation = '0';
-            let Xadjustor = (Math.random() - 0.5) * 5;
-            let Yadjustor = (Math.random() - 0.5) * 5;
+            let Xadjustor = (Math.random() - 0.5) * 10;
+            let Yadjustor = (Math.random() - 0.5) * 10;
 
 
             for (let i = 0; i < 7; i++) {
