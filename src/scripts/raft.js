@@ -86,6 +86,10 @@ class Raft {
             let tileArr = []
             let color = undefined
             let orientation = '0';
+            let Xadjustor = (Math.random() - 0.5) * 5;
+            let Yadjustor = (Math.random() - 0.5) * 5;
+
+
             for (let i = 0; i < 7; i++) {
                 for (let j = 0; j < 7; j++) {
                     tileArr.push(new Tile(i, j, color, orientation))
@@ -113,13 +117,13 @@ class Raft {
                             if (tile.status === 'floating') {
                                 this.c.drawImage(this.reg_pic, (tile.x * 100) + midX - 350, (tile.y * 100) + midY - 350, 100, 100)
                             } else {
-                                this.c.drawImage(this.flashing_pic, (tile.x * 100) + midX - 350, (tile.y * 100) + midY - 350, 100, 100)
+                                this.c.drawImage(this.flashing_pic, (tile.x * 100) + midX - 350 + Xadjustor, (tile.y * 100) + midY - 350 + Yadjustor, 100, 100)
                             }
                         } else {
                             if (tile.status === 'floating') {
                                 this.c.drawImage(this.reg_90, (tile.x * 100) + midX - 350, (tile.y * 100) + midY - 350, 100, 100)
                             } else {
-                                this.c.drawImage(this.flashing_90, (tile.x * 100) + midX - 350, (tile.y * 100) + midY - 350, 100, 100)
+                                this.c.drawImage(this.flashing_90, (tile.x * 100) + midX - 350 + Xadjustor, (tile.y * 100) + midY - 350 + Yadjustor, 100, 100)
                             }
                         }
                     }
