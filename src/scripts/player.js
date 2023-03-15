@@ -16,6 +16,7 @@ class Player {
         this.dx = 0;
         this.dy = 0;
         this.direction = 'idle';
+        this.idleDir = 'left';
 
         this.capyLeft = new Image();
         this.capyLeft.src = './assets/the_real_left.png';
@@ -27,6 +28,9 @@ class Player {
         this.capyDown.src = './assets/the_real_front.png';
         this.capyUp = new Image();
         this.capyUp.src = './assets/the_real_back.png'
+        this.capyIdleR = new Image();
+        this.capyIdleR.src = './assets/the_real_idle_right.png'
+
     }
 
     chooseSquare(x, y) {
@@ -45,12 +49,17 @@ class Player {
             this.c.drawImage(sprite, 75 + (animation * 240), 0, 240, 188, x - 17, y - 25, 90, 70);
         } else if (this.direction === 'right') {
             this.c.drawImage(sprite, 50 + (animation * 240), 0, 240, 188, x + 20, y - 25, 90, 70);
-        } else if (this.direction === 'idle') {
-            this.c.drawImage(sprite, 30 + (animation * 220), 0, 240, 188, x - 17, y - 25, 117, 91);
         } else if (this.direction === 'up') {
             this.c.drawImage(sprite, 10 + (animation * 215), 0, 215, 215, x, y - 25, 80, 80);
         } else if (this.direction === 'down') {
             this.c.drawImage(sprite, 10 + (animation * 215), 0, 215, 215, x, y - 25, 80, 80);
+        } else if (this.direction === 'idle') {
+
+            if (this.idleDir === 'left') {
+                this.c.drawImage(sprite, 30 + (animation * 220), 0, 240, 188, x - 17, y - 25, 117, 91);
+            } else {
+                this.c.drawImage(sprite, 20 + (animation * 220), 0, 240, 188, x - 10, y - 25, 117, 91);
+            }
         }
     }
 
@@ -78,7 +87,11 @@ class Player {
         } else if (this.direction === 'down') {
             return this.capyDown;
         } else if (this.direction === 'idle') {
-            return this.capyIdle;
+            if (this.idleDir === 'left') {
+                return this.capyIdle;
+            } else {
+                return this.capyIdleR;
+            }
         }
     }
 

@@ -27,6 +27,7 @@ class View {
             } else if (event.key === 'd') {
                 this.game.player.dx = this.speed;
                 this.game.player.direction = 'right'
+                this.game.player.idleDir = 'right'
             } else if (event.key === 's') {
                 this.game.player.dy = this.speed;
                 if (this.game.player.dx === 0) {
@@ -35,6 +36,7 @@ class View {
             } else if (event.key === 'a') {
                 this.game.player.dx = -this.speed;
                 this.game.player.direction = 'left'
+                this.game.player.idleDir = 'left'
             }
         })
 
