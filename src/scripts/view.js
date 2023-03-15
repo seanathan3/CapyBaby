@@ -14,6 +14,7 @@ class View {
         this.background.src = './assets/pokemon_sea.png';
         this.frame = 0;
         this.moveFrame = 0;
+        this.startFrame = 0;
         this.timer = 940;
         this.counter = 3;
         this.speed = 7;
@@ -97,7 +98,7 @@ class View {
         this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
         // load background image
         // this.c.drawImage(this.background, 0, 0,);
-        this.drawBackground()
+        this.drawBackground(this.frame)
         
         this.game.raft.draw();
         this.game.player.printPos(this.moveFrame);
@@ -135,21 +136,20 @@ class View {
         document.addEventListener('keydown', () => {
             this.started = true;
             this.c.drawImage(this.background, 0, 0)
-            this.game.raft.draw();
-            this.c.fillStyle = 'rgba(255, 255, 255, 1)'
             setTimeout(() => {
+                this.c.fillStyle = 'rgba(255, 255, 255, 1)'
                 this.c.font = '300px sans serif'
-                this.c.fillText('3', this.canvas.width / 2 - 350, this.canvas.height / 2)
+                this.c.fillText('3', this.canvas.width / 2 - 340, this.canvas.height / 2)
             }, 500)
 
             setTimeout(() => {
                 this.c.font = '300px sans serif'
-                this.c.fillText('2', this.canvas.width / 2 - 75, this.canvas.height / 2)
+                this.c.fillText('2', this.canvas.width / 2 - 65, this.canvas.height / 2)
             }, 1450)
 
             setTimeout(() => {
                 this.c.font = '300px sans serif'
-                this.c.fillText('1', this.canvas.width / 2 + 200, this.canvas.height / 2)
+                this.c.fillText('1', this.canvas.width / 2 + 210, this.canvas.height / 2)
             }, 2400)
             
             setTimeout(() => {
@@ -182,8 +182,8 @@ class View {
         this.c.fillText(`SCORE:      ${this.game.score}`, 0, 30)
     }
 
-    drawBackground() {
-        let increment = Math.floor(this.frame / 20)
+    drawBackground(frame) {
+        let increment = Math.floor(frame / 20)
         if (increment % 4 === 3) {
             this.c.drawImage(this.background, 0, 0, 2000, 1000, 0, 0, this.canvas.width, this.canvas.height);
         } else if (increment % 4 === 2) {
@@ -236,7 +236,6 @@ class View {
     }
 
     instructions(yAdjustor) {
-        console.log(this.c)
         this.c.font = '30px fantasy'
         this.c.fillText('Press any key to start!', this.canvas.width / 2 - 148, this.canvas.height / 2 + 30 - yAdjustor);
     }
@@ -253,9 +252,6 @@ class View {
 
 
     animateStart() {
-        if (this.started === false) {
-            requestAnimationFrame(this.animateStart.bind(this));
-        }
         this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
         if (this.dy >= 0) {
             this.dy += this.velocity;
@@ -264,10 +260,17 @@ class View {
             this.velocity = this.origVel;
             this.dy = 0;
         }
-
-        this.c.drawImage(this.background, 0, 0);
+        
+        this.drawBackground(Math.floor(this.startFrame / 2));
         this.instructions(this.dy);
         this.startFrame++
+        if (this.started === false) {
+            requestAnimationFrame(this.animateStart.bind(this));
+        } else {
+            this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.drawBackground(Math.floor(this.startFrame / 2));
+            this.game.raft.draw();
+        }
     }
 
 
