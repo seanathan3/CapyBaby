@@ -1,10 +1,11 @@
 class Tile {
-    constructor(x, y, color) {
+    constructor(x, y, color, orientation) {
         this.x = x;
         this.y = y;
         this.color = color;
         this.originalColor = color;
         this.status = 'floating'
+        this.orientation = orientation
     }
 
     flash() {

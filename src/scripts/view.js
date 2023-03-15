@@ -229,12 +229,8 @@ class View {
     }
 
     instructions() {
-        this.c.fillStyle = 'rgba(255, 255, 255, 1)'
-        this.c.fillText('CapyBaby is late for school! Luckily a speedy, but dangerous', this.canvas.width / 2 - 350, this.canvas.height / 2 - 300);
-        this.c.fillText('raft is here to give CapyBaby a ride. Avoid the flashing squares', this.canvas.width / 2 - 350, this.canvas.height / 2 - 250);
-        this.c.fillText('to stay afloat before the bell rings!', this.canvas.width / 2 - 350, this.canvas.height / 2 - 200);
-        this.c.fillText('Move with *WASD*', this.canvas.width / 2 - 350, this.canvas.height / 2 - 100);
-        this.c.fillText('Press any key to start!', this.canvas.width / 2 - 350, this.canvas.height / 2 + 100);
+        this.c.font = '30px fantasy'
+        this.c.fillText('Press any key to start!', this.canvas.width / 2 - 180, this.canvas.height / 2 + 30);
     }
 
     gameOver() {
