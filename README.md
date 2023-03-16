@@ -1,21 +1,30 @@
 # CapyBaby
 
-CapyBaby is a survival game where the player has to stay alive on a raft as long as possible. The raft is set up as a 7x7 grid, and at set increments, random tiles will shake. The player will then have to get to a non-shaking square fast enough before the tile drops. As the game progresses, the amount of tiles that fall increases until only one tile remains. Each time a player survives a wave of tiles falling, 100 points is added to his/her score.
+CapyBaby is a survival game where the player has to stay alive on a raft for as long as possible. The raft is set up as a 7x7 grid, and at set increments, random tiles will shake. The player will then have to get to a non-shaking tile before the tiles drop. As the game progresses, the amount of tiles that fall increases until only one tile remains. Each time a player survives a wave of tiles falling, 100 points is added to their score.
 
 ***
-## Functionality & MVP
+## Functionality
 
-In CapyBaby, users will be able to:
+### Start:
+Upon pressing start, CapyBaby will fall onto the raft and lay down for a brief moment before standing back up. Simultaneously, a '3-2-1' countdown will appear on the raft. This functionality was build by setting SetTimeout booleans that become 'true' as the numbers should be displayed.
 
- - Move the player in cardinal directions using keyboard arrow keys
- - See which tiles will be falling with a flashing animation
- - Fall into the water if they don't get onto a safe tile in time
- - Check their score in the corner of the screen
+ - insert picture & code
 
-In addition, this project will include:
+### Game Loop:
+When the game starts, the tiles will flash, drop, and reset at set intervals. This logic was built in a SetInterval method, where the modulo operator indicated if the iteration should flash tiles, drop tiles, or reset tiles. The difficulty increases over time according to a dynamic 'dropSquares' method in the Raft class.
 
- - A pop up instruction menu on the landing page
- - Fruit spawning on the raft for the player to collect and score extra points
+ - insert picture & code
+
+### Player Movement:
+Player movement is determined by linking x and y velocity to document event listeners. The current velocity determines the direction the player is facing. Animation of the directions was accomplished by ripping a sprite sheet and cycling through 5 images every 6 frames.
+
+ - insert picture & code
+
+### Instructions:
+An instructions menu is available in the page header as a modal element. Upon clicking the 'instructions' button, the screen darkens and the user can see the instructions in the center of the screen.
+
+ - insert picture & code
+
 
 ***
 ## Wireframe
@@ -25,8 +34,9 @@ In addition, this project will include:
 
 ***
 Technologies, Libraries, APIs
- - Canvas is the primary library used in this project
- - Webpack and Babel are used for file organization and server implementation
+ - The Canvas API to render and animate the raft, background, and sprites.
+ - Webpack to bundle and transpile the source JavaScript code.
+ - npm to manage project dependencies.
 
 ***
 ## Implementation Timeline
