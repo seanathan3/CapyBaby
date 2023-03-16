@@ -8,13 +8,14 @@ CapyBaby is a survival game where the player has to stay alive on a raft for as 
 ### Start:
 Upon pressing start, CapyBaby will fall onto the raft and lay down for a brief moment before standing back up. Simultaneously, a '3-2-1' countdown will appear on the raft. This functionality was build by setting SetTimeout booleans that become 'true' as the numbers should be displayed.
 
-<img src="./assets/ReadMe/opening_gif.gif">
- - insert picture & code
+<img src="./assets/ReadMe/start_gif.gif">
 
 ### Game Loop:
 When the game starts, the tiles will flash, drop, and reset at set intervals. This logic was built in a SetInterval method, where the modulo operator indicated if the iteration should flash tiles, drop tiles, or reset tiles. The difficulty increases over time according to a dynamic 'dropSquares' method in the Raft class.
 
- - insert picture & code
+ <img src="./assets/ReadMe/flashing_squares_gif.gif">
+
+ <img src="./assets/ReadMe/falling_squares_gif.gif">
 
 ### Player Movement:
 Player movement is determined by linking x and y velocity to document event listeners. The current velocity determines the direction the player is facing. Animation of the directions was accomplished by ripping a sprite sheet and cycling through 5 images every 6 frames.
