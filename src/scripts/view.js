@@ -24,6 +24,7 @@ class View {
         this.dy = 0;
         this.gravity = 0.08;
         this.fps = 90;
+        this.randStart = Math.random() * this.canvas.height * 0.8 + (0.1 * this.canvas.height)
 
         document.addEventListener('keypress', event => {
             if (event.key === 'w') {
@@ -133,6 +134,7 @@ class View {
             this.c.fillStyle = 'rgba(255, 255, 255, 1)'
             this.c.font = '30px sans serif'
             // this.c.fillText('CapyBaby', this.canvas.width / 2 - 65, this.canvas.height / 2 - 290)
+            this.swimFrames = 0;
             this.animateStart();
         }, 100)
 
@@ -312,7 +314,18 @@ class View {
         
         this.drawBackground(Math.floor(this.startFrame / 2));
         this.instructions(this.dy);
-        // this.c.drawImage(this.game.player.capySwim, this.canvas.width, this.canvas.height)
+        
+        let animationFrames = Math.floor((this.swimFrames / 10) % 5)
+        this.c.drawImage(this.game.player.capySwim, 20 + (animationFrames * 270), 0, 270, 140, (this.canvas.width - this.swimFrames * 4), this.randStart, 117, 61);
+
+        if (this.swimFrames < this.canvas.width * 0.3) {
+            this.swimFrames++;
+            console.log('incrementing')
+            console.log(this.swimFrames)
+        } else {
+            this.swimFrames = 0
+            this.randStart = Math.random() * this.canvas.height * 0.8 + (0.1 * this.canvas.height);
+        }
 
 
         this.startFrame++
