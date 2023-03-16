@@ -1,4 +1,4 @@
-# CapyBaby Is Late for School!
+# CapyBaby
 
 ## Background
 
