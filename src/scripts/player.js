@@ -32,6 +32,8 @@ class Player {
         this.capyIdleR.src = './assets/the_real_idle_right.png';
         this.capyStand = new Image();
         this.capyStand.src = './assets/the_real_stand.png';
+        this.capySwim = new Image();
+        this.capySwim.src = './assets/the_real_swim.png'
 
     }
 

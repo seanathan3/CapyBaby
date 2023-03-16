@@ -172,13 +172,18 @@ class View {
                         let modFrames = Math.floor((sitFrames / 10) % 50)
                         this.c.drawImage(this.game.player.capyStand, 1200 - (modFrames * 305), 0, 305, 188, startPosition[0], startPosition[1], 100, 80)
                         sitFrames += 1
-                    } else if (sitFrames <= 150) {
+                    } else if (sitFrames <= 99) {
                         this.c.drawImage(this.game.player.capyStand, 0, 0, 305, 188, startPosition[0], startPosition[1], 100, 80)
                         sitFrames += 1
-                    } else {
+                    } else if (sitFrames <= 149) {
                         let modFrames = Math.floor((sitFrames / 10) % 5)
                         this.c.drawImage(this.game.player.capyStand, (modFrames * 305), 0, 305, 188, startPosition[0], startPosition[1], 100, 80)
                         sitFrames++
+                    } else {
+                        // this.c.drawImage(this.game.player.capyStand, 1200, 0, 305, 188, startPosition[0], startPosition[1], 100, 80)
+                        // this.c.drawImage(this.game.player.capyIdle, 1200, 0, 305, 188, startPosition[0], startPosition[1], 100, 80)
+                        this.c.drawImage(this.game.player.capyIdle, 30, 0, 240, 188, startPosition[0], startPosition[1], 117, 91);
+                        
                     }
                 }, 1000 / this.fps)
             }, 200)
@@ -307,6 +312,9 @@ class View {
         
         this.drawBackground(Math.floor(this.startFrame / 2));
         this.instructions(this.dy);
+        // this.c.drawImage(this.game.player.capySwim, this.canvas.width, this.canvas.height)
+
+
         this.startFrame++
         if (this.started === false) {
             setTimeout(() => {

@@ -57,7 +57,3 @@ btn.onclick = function() {
 span.onclick = function() {
     modal.style.display = 'none'
 }
-
-document.addEventListener('click', event => {
-    console.log(event.x, event.y)
-})
