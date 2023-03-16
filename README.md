@@ -7,7 +7,7 @@ CapyBaby is a survival game where the player has to help CapyBaby stay afloat on
 Enjoy!
 
 ***
-## Functionality & MVPs
+## Functionality & MVP
 
 In CapyBaby, users will be able to:
 
