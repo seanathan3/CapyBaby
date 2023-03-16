@@ -15,7 +15,7 @@ class View {
         this.frame = 0;
         this.moveFrame = 0;
         this.startFrame = 0;
-        this.timer = 940;
+        this.timer = 935;
         this.counter = 3;
         this.speed = 7;
         this.started = false;
@@ -142,23 +142,23 @@ class View {
             setTimeout(() => {
                 this.c.fillStyle = 'rgba(255, 255, 255, 1)'
                 this.c.font = '300px sans serif'
-                this.c.fillText('3', this.canvas.width / 2 - 340, this.canvas.height / 2)
+                this.c.fillText('3', this.canvas.width / 2 - 340, this.canvas.height / 2 - 120)
             }, 200)
 
             setTimeout(() => {
                 this.c.font = '300px sans serif'
-                this.c.fillText('2', this.canvas.width / 2 - 65, this.canvas.height / 2)
-            }, 1150)
+                this.c.fillText('2', this.canvas.width / 2 - 65, this.canvas.height / 2 - 120)
+            }, 1135)
 
             setTimeout(() => {
                 this.c.font = '300px sans serif'
-                this.c.fillText('1', this.canvas.width / 2 + 210, this.canvas.height / 2)
-            }, 2100)
+                this.c.fillText('1', this.canvas.width / 2 + 210, this.canvas.height / 2 - 120)
+            }, 2070)
             
             setTimeout(() => {
                 this.interval = setInterval(this.cycle.bind(this), this.timer)
                 requestAnimationFrame(this.animate.bind(this))
-            }, 3050)
+            }, 3005)
         }, {once: true})
     }
 
@@ -180,7 +180,7 @@ class View {
     scoreboard() {
         this.c.fillStyle = 'rgba(100, 100, 100, .6)'
         this.c.fillRect(0, 0, 230, 40)
-        this.c.font = '30px fantasy'
+        this.c.font = '30px bradley hand'
         this.c.fillStyle = '#FFFFFF'
         this.c.fillText(`SCORE:      ${this.game.score}`, 0, 30)
     }
@@ -239,8 +239,8 @@ class View {
     }
 
     instructions(yAdjustor) {
-        this.c.font = '30px fantasy'
-        this.c.fillText('Press any key to start!', this.canvas.width / 2 - 148, this.canvas.height / 2 + 30 - yAdjustor);
+        this.c.font = '30px bradley hand'
+        this.c.fillText('Press any key to start!', this.canvas.width / 2 - 140, this.canvas.height / 2 + 30 - yAdjustor);
     }
 
     gameOver() {
@@ -268,7 +268,9 @@ class View {
         this.instructions(this.dy);
         this.startFrame++
         if (this.started === false) {
-            requestAnimationFrame(this.animateStart.bind(this));
+            setTimeout(() => {
+                requestAnimationFrame(this.animateStart.bind(this));
+            }, 1000 / this.fps)
         } else {
             this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.drawBackground(Math.floor(this.startFrame / 2));
