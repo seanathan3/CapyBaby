@@ -1,4 +1,4 @@
-# CapyBaby Is Late for School!
+# CapyBaby
 
 ## Background
 
@@ -7,7 +7,7 @@ CapyBaby is a survival game where the player has to help CapyBaby stay afloat on
 Enjoy!
 
 ***
-## Functionality & MVPs
+## Functionality & MVP
 
 In CapyBaby, users will be able to:
 
@@ -22,7 +22,7 @@ In addition, this project will include:
  - Fruit spawning on the raft for the player to collect and score extra points
 
 ***
-## Wireframes
+## Wireframe
 
 <img width="703" alt="Screen Shot 2023-03-09 at 5 48 25 PM" src="https://user-images.githubusercontent.com/111205278/224177821-93054ceb-af7d-426d-86a4-bfa10a77acde.png">
 
