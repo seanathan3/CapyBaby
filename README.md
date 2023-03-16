@@ -1,10 +1,6 @@
 # CapyBaby
 
-## Background
-
-CapyBaby is a survival game where the player has to help CapyBaby stay afloat on the raft taking him to school. At fixed increments, segments of the raft will collapse and CapyBaby must avoid the dangerous areas to get to class before the bell rings.
-
-Enjoy!
+CapyBaby is a survival game where the player has to stay alive on a raft as long as possible. The raft is set up as a 7x7 grid, and at set increments, random tiles will shake. The player will then have to get to a non-shaking square fast enough before the tile drops. As the game progresses, the amount of tiles that fall increases until only one tile remains. Each time a player survives a wave of tiles falling, 100 points is added to his/her score.
 
 ***
 ## Functionality & MVP
