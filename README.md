@@ -13,8 +13,6 @@ Upon pressing start, CapyBaby will fall onto the raft and lay down for a brief m
 ### Game Loop:
 When the game starts, the tiles will flash, drop, and reset at set intervals. This logic was built in a SetInterval method, where the modulo operator indicated if the iteration should flash tiles, drop tiles, or reset tiles. The difficulty increases over time according to a dynamic 'dropSquares' method in the Raft class.
 
- <img src="./assets/ReadMe/flashing_squares_gif.gif">
-
  <img src="./assets/ReadMe/cropped_falling.gif">
 
 ### Player Movement:
