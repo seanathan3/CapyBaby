@@ -27,9 +27,11 @@ class Player {
         this.capyDown = new Image();
         this.capyDown.src = './assets/the_real_front.png';
         this.capyUp = new Image();
-        this.capyUp.src = './assets/the_real_back.png'
+        this.capyUp.src = './assets/the_real_back.png';
         this.capyIdleR = new Image();
-        this.capyIdleR.src = './assets/the_real_idle_right.png'
+        this.capyIdleR.src = './assets/the_real_idle_right.png';
+        this.capyStand = new Image();
+        this.capyStand.src = './assets/the_real_stand.png';
 
     }
 

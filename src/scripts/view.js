@@ -139,24 +139,65 @@ class View {
         document.addEventListener('keydown', () => {
             this.started = true;
             this.c.drawImage(this.background, 0, 0)
+            let falling;
+            let sitFrames = 0;
+            let two;
+            let one;
+            let stop1 = false;
+            let stop2 = false;
             setTimeout(() => {
                 this.c.fillStyle = 'rgba(255, 255, 255, 1)'
                 this.c.font = '300px sans serif'
-                this.c.fillText('3', this.canvas.width / 2 - 340, this.canvas.height / 2 - 120)
+                let startPosition = [this.canvas.width / 2 - 60, 0]
+                
+                falling = setInterval(() => {
+                    this.c.drawImage(this.background, 0, 0)
+                    this.game.raft.draw();
+                    this.c.fillStyle = 'rgba(255, 255, 255, 1)'
+                    this.c.fillText('3', this.canvas.width / 2 - 340, this.canvas.height / 2 - 120)
+
+                    if (stop1 === true) {
+                        this.c.fillText('2', this.canvas.width / 2 - 65, this.canvas.height / 2 - 120)
+                    }
+
+                    if (stop2 === true) {
+                        this.c.fillText('1', this.canvas.width / 2 + 210, this.canvas.height / 2 - 120);
+                    }
+                    
+
+                    if (startPosition[1] <= this.canvas.height / 2 - 50) {
+                        this.c.drawImage(this.game.player.capyIdle, 30, 0, 240, 188, startPosition[0], startPosition[1], 117, 91)
+                        startPosition[1] += 5
+                    } else if (sitFrames <= 49){
+                        let modFrames = Math.floor((sitFrames / 10) % 50)
+                        this.c.drawImage(this.game.player.capyStand, 1200 - (modFrames * 305), 0, 305, 188, startPosition[0], startPosition[1], 100, 80)
+                        sitFrames += 1
+                    } else if (sitFrames <= 150) {
+                        this.c.drawImage(this.game.player.capyStand, 0, 0, 305, 188, startPosition[0], startPosition[1], 100, 80)
+                        sitFrames += 1
+                    } else {
+                        let modFrames = Math.floor((sitFrames / 10) % 5)
+                        this.c.drawImage(this.game.player.capyStand, (modFrames * 305), 0, 305, 188, startPosition[0], startPosition[1], 100, 80)
+                        sitFrames++
+                    }
+                }, 1000 / this.fps)
             }, 200)
 
             setTimeout(() => {
                 this.c.font = '300px sans serif'
-                this.c.fillText('2', this.canvas.width / 2 - 65, this.canvas.height / 2 - 120)
+                stop1 = true;
             }, 1135)
 
             setTimeout(() => {
                 this.c.font = '300px sans serif'
-                this.c.fillText('1', this.canvas.width / 2 + 210, this.canvas.height / 2 - 120)
+                stop2 = true;
             }, 2070)
             
             setTimeout(() => {
                 this.interval = setInterval(this.cycle.bind(this), this.timer)
+                window.clearInterval(falling);
+                window.clearInterval(two);
+                this.game.player.idleDir = 'left';
                 requestAnimationFrame(this.animate.bind(this))
             }, 3005)
         }, {once: true})
