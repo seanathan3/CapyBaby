@@ -23,6 +23,7 @@ class View {
         this.origVel = this.velocity;
         this.dy = 0;
         this.gravity = 0.08;
+        this.fps = 90;
 
         document.addEventListener('keypress', event => {
             if (event.key === 'w') {
@@ -111,7 +112,9 @@ class View {
         }
 
         if (this.game.survive()) {
-            requestAnimationFrame(this.animate.bind(this));
+            setTimeout(() => {
+                requestAnimationFrame(this.animate.bind(this));
+            }, 1000 / this.fps)
         } else {
             this.gameOver();
             clearInterval(this.interval)
@@ -140,22 +143,22 @@ class View {
                 this.c.fillStyle = 'rgba(255, 255, 255, 1)'
                 this.c.font = '300px sans serif'
                 this.c.fillText('3', this.canvas.width / 2 - 340, this.canvas.height / 2)
-            }, 500)
+            }, 200)
 
             setTimeout(() => {
                 this.c.font = '300px sans serif'
                 this.c.fillText('2', this.canvas.width / 2 - 65, this.canvas.height / 2)
-            }, 1450)
+            }, 1150)
 
             setTimeout(() => {
                 this.c.font = '300px sans serif'
                 this.c.fillText('1', this.canvas.width / 2 + 210, this.canvas.height / 2)
-            }, 2400)
+            }, 2100)
             
             setTimeout(() => {
                 this.interval = setInterval(this.cycle.bind(this), this.timer)
                 requestAnimationFrame(this.animate.bind(this))
-            }, 3350)
+            }, 3050)
         }, {once: true})
     }
 
