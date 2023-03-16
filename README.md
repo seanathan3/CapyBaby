@@ -8,6 +8,7 @@ CapyBaby is a survival game where the player has to stay alive on a raft for as 
 ### Start:
 Upon pressing start, CapyBaby will fall onto the raft and lay down for a brief moment before standing back up. Simultaneously, a '3-2-1' countdown will appear on the raft. This functionality was build by setting SetTimeout booleans that become 'true' as the numbers should be displayed.
 
+<img src="./assets/ReadMe/opening_gif.gif">
  - insert picture & code
 
 ### Game Loop:
