@@ -34,9 +34,6 @@ function init() {
     }
 }
 
-
-console.log(circleArr)
-
 let mouse = {
     x: undefined,
     y: undefined
@@ -45,10 +42,7 @@ let mouse = {
 let maxRadius = 40;
 let minRadius = 2;
 
-console.log(mouse)
-
 window.addEventListener('mousemove', (event) => {
-    console.log(mouse.x, mouse.y)
     mouse.x = event.x;
     mouse.y = event.y;
 })
@@ -70,9 +64,6 @@ function animate() {
 
 
 }
-
-console.log(c)
-
 init();
 animate();
 

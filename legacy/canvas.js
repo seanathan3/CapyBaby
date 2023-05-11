@@ -129,10 +129,8 @@ function createRandomCircles(num) {
 }
 
 let army = createRandomCircles(10)
-console.log(army)
 
 army.forEach(el => {
-    console.log(el)
 })
 
 function directionchanger(current, maxWidth, radius) {
@@ -144,10 +142,8 @@ function animate(circlesArr, c) {
     c.clearRect(0, 0, canvas.width, canvas.height)
     
     circlesArr.forEach(circle => {
-        console.log(c)
         c.beginPath();
         c.arc(200, 200, 50, 0, Math.PI * 2, false);
-        console.log(circle.x)
         c.stroke();
 
         circle.move()

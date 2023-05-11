@@ -26,22 +26,22 @@ class View {
         this.fps = 90;
         this.randStart = Math.random() * this.canvas.height * 0.8 + (0.1 * this.canvas.height)
 
-        document.addEventListener('keypress', event => {
-            if (event.key === 'w') {
+        document.addEventListener('keydown', event => {
+            if (event.key === 'ArrowUp') {
                 this.game.player.dy = -this.speed;
                 if (this.game.player.dx === 0) {
                     this.game.player.direction = 'up'
                 }
-            } else if (event.key === 'd') {
+            } else if (event.key === 'ArrowRight') {
                 this.game.player.dx = this.speed;
                 this.game.player.direction = 'right'
                 this.game.player.idleDir = 'right'
-            } else if (event.key === 's') {
+            } else if (event.key === 'ArrowDown') {
                 this.game.player.dy = this.speed;
                 if (this.game.player.dx === 0) {
                     this.game.player.direction = 'down'
                 }
-            } else if (event.key === 'a') {
+            } else if (event.key === 'ArrowLeft') {
                 this.game.player.dx = -this.speed;
                 this.game.player.direction = 'left'
                 this.game.player.idleDir = 'left'
@@ -49,7 +49,7 @@ class View {
         })
 
         document.addEventListener('keyup', event => {
-            if (event.key === 'w') {
+            if (event.key === 'ArrowUp') {
                 if (this.game.player.dy === -this.speed) {
                     this.game.player.dy = 0;
                     if (this.game.player.dx === 0) {
@@ -57,7 +57,7 @@ class View {
                     }
                 }
         
-            } else if (event.key === 'd') {
+            } else if (event.key === 'ArrowRight') {
                 if (this.game.player.dx === this.speed) {
                     this.game.player.dx = 0;
                     if (this.game.player.dy === 0) {
@@ -69,7 +69,7 @@ class View {
                     }
                 }
         
-            } else if (event.key === 's') {
+            } else if (event.key === 'ArrowDown') {
                 if (game.player.dy === this.speed) {
                     game.player.dy = 0;
                     if (game.player.dx === 0) {
@@ -77,7 +77,7 @@ class View {
                     }
                 }
         
-            } else if (event.key === 'a') {
+            } else if (event.key === 'ArrowLeft') {
                 if (game.player.dx === -this.speed) {
                     game.player.dx = 0;
                             
@@ -320,8 +320,6 @@ class View {
 
         if (this.swimFrames < this.canvas.width * 0.3) {
             this.swimFrames++;
-            console.log('incrementing')
-            console.log(this.swimFrames)
         } else {
             this.swimFrames = 0
             this.randStart = Math.random() * this.canvas.height * 0.8 + (0.1 * this.canvas.height);
