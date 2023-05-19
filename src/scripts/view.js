@@ -4,8 +4,6 @@ import Game from './game'
 class View {
     constructor(canvas, context, game) {
         this.canvas = canvas
-        // this.canvas.width = window.innerWidth;
-        // this.canvas.height = window.innerHeight;
         this.c = context
         this.startX = (this.canvas.width / 2) - 250;
         this.startY = (this.canvas.height / 2) - 250;
@@ -96,10 +94,7 @@ class View {
     }
 
     animate() {
-        // set up animation to render new frames
         this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        // load background image
-        // this.c.drawImage(this.background, 0, 0,);
         this.drawBackground(this.frame)
         
         this.game.raft.draw();
@@ -129,11 +124,8 @@ class View {
         setTimeout(() => {
             this.c.drawImage(this.background, 0, 0, 2000, 1000, 0, 0, this.canvas.width, this.canvas.height);
 
-            // this.c.fillStyle = 'rgba(0, 0, 0, 1)'
-            // this.c.fillRect(this.canvas.width / 2 - 150, this.canvas.height / 2 - 350, 300, 100)
             this.c.fillStyle = 'rgba(255, 255, 255, 1)'
             this.c.font = '30px sans serif'
-            // this.c.fillText('CapyBaby', this.canvas.width / 2 - 65, this.canvas.height / 2 - 290)
             this.swimFrames = 0;
             this.animateStart();
         }, 100)
@@ -182,8 +174,6 @@ class View {
                         this.c.drawImage(this.game.player.capyStand, (modFrames * 305), 0, 305, 188, startPosition[0], startPosition[1], 100, 80)
                         sitFrames++
                     } else {
-                        // this.c.drawImage(this.game.player.capyStand, 1200, 0, 305, 188, startPosition[0], startPosition[1], 100, 80)
-                        // this.c.drawImage(this.game.player.capyIdle, 1200, 0, 305, 188, startPosition[0], startPosition[1], 100, 80)
                         this.c.drawImage(this.game.player.capyIdle, 30, 0, 240, 188, startPosition[0], startPosition[1], 117, 91);
                         
                     }
@@ -247,8 +237,6 @@ class View {
     }
 
     restartGame() {
-        // document.removeEventListener('click', this.restartGame.bind(this))
-        // this.c.clearRect(0, 0, this.canvas.width, this.canvas.height)
         let new_game = new Game(this.canvas, this.c);
         new View(this.canvas, this.c, new_game).start();
     }
@@ -276,7 +264,6 @@ class View {
             } else {
                 this.game.raft.flashSquares(98);
             }
-            // this.game.raft.flashSquares(50 + this.counter);
         } else if (this.counter % 3 === 1) {
             this.game.raft.dropSquares();
         } else {
@@ -344,7 +331,3 @@ class View {
 
 
 export default View;
-
-
-
-/// testtttttttt

@@ -48,11 +48,9 @@ class Raft {
         let dimension = Math.sqrt(this.size)
 
         while (squaresToFlash > 0) {
-            //choosing a random square to flash
             let x = Math.floor((Math.random() * dimension))
             let y = Math.floor((Math.random() * dimension))
             
-            //checking if random square is already flashing (will try again if not)
             let tile = this.grid[x][y];
             if (!tile.flashing()) {
                 tile.flash();
@@ -130,14 +128,6 @@ class Raft {
                 }
             }
     }
-
-    // colorSwitch(color) {
-    //     if (color === '#A46233') {
-    //         return "#8B4513"
-    //     } else {
-    //         return '#A46233'
-    //     }
-    // }
 
     colorSwitch(color) {
         if (color === '#693816') {
