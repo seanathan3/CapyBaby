@@ -25,3 +25,4 @@ class Game {
 export default Game;
 
 // comment 1
+// comment 2
