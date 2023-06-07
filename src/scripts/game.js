@@ -24,4 +24,3 @@ class Game {
 
 export default Game;
 
-// comment 1
